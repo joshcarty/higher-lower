@@ -1,48 +1,7 @@
 #include <iostream>
-#include <cstdlib>
-#include <vector>
+#include "deck.h"
 
 enum class Guess {higher, lower};
-
-class Deck {
-  
-  private:
-    const int nCards = 13;
-    const int nSuits = 4;
-    const int totalCards = nCards * nSuits;
-    std::vector<int> cards;
-  
-  public:
-    Deck();
-    void shuffle();
-    int pop();
-    int getCard(int i) {return cards[i];}
-    int getNumCards() {return totalCards;}
-    size_t getSize() {return cards.size();}
-};
-  
-Deck::Deck() {
-  for (int card=1; card<=nCards; card++) {
-    for (int suit=1; suit<=nSuits; suit++) {
-      cards.push_back(card);
-    }
-  }
-}
-    
-void Deck::shuffle() {
-  for (int i=0; i < totalCards; i++) {
-    int r = rand() % totalCards;
-    int temp = cards[i];
-    cards[i] = cards[r];
-    cards[r] = temp;
-  }
-}
-
-int Deck::pop() {
-  int card = cards.back();
-  cards.pop_back();
-  return card;
-}
 
 Guess playStrategy(int card) {
   Guess guess;
